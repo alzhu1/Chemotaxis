@@ -20,7 +20,6 @@
  		colony[j].move();
  		colony[j].show();
  	}
- 	System.out.println((int)(Math.random()*4-2));
  }  
  class Bacteria    
  {
