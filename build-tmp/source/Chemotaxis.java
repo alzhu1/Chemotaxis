@@ -16,6 +16,7 @@ public class Chemotaxis extends PApplet {
 
  //declare bacteria variables here   
  Bacteria [] colony;
+ Food jeeves = new Food();
  public void setup()   
  {
  	size(500,500);
@@ -25,19 +26,25 @@ public class Chemotaxis extends PApplet {
  	{
  		colony[i] = new Bacteria();
  	}
+ 	frameRate(30);
  }   
  public void draw()   
  {
  	background(127);
  	noFill();
+ 	jeeves.show();
  	//move and show the bacteria
  	for(int j = 0; j<colony.length; j++)
  	{
  		colony[j].move();
  		colony[j].show();
  	}
- 	System.out.println((int)(Math.random()*4-2));
  }  
+ public void mousePressed()
+ {
+ 	jeeves.foodX = mouseX+5;
+ 	jeeves.foodY = mouseY+5;
+ }
  class Bacteria    
  {
  	int bacX, bacY, bacCol;
@@ -50,16 +57,47 @@ public class Chemotaxis extends PApplet {
  	}
  	public void move()
  	{
- 		bacX = bacX + (int)(Math.random()*4-2);
- 		bacY = bacY + (int)(Math.random()*4-2);
+ 		bacX = bacX + (int)(Math.random()*3)-1;
+ 		bacY = bacY + (int)(Math.random()*3)-1;
+ 		if(jeeves.foodX+5 > bacX)
+ 		{
+ 			bacX = bacX + (int)(Math.random()*3);
+ 		}
+ 		if(jeeves.foodX+5 < bacX)
+ 		{
+ 			bacX = bacX + (int)(Math.random()*3)-2;
+ 		}
+ 		if(jeeves.foodY+5 > bacY)
+ 		{
+ 			bacY = bacY + (int)(Math.random()*3);
+ 		}
+ 		if(jeeves.foodY+5 < bacY)
+ 		{
+ 			bacY = bacY + (int)(Math.random()*3)-2;
+ 		}
  	}
  	public void show()
  	{
  		stroke(bacCol);
+ 		noFill();
  		ellipse(bacX,bacY,10,10);
  	}
  	//lots of java!   
  }    
+ class Food
+ {
+ 	int foodX, foodY;
+ 	Food()
+ 	{
+ 		foodX = (int)(Math.random()*501);
+ 		foodY = (int)(Math.random()*501);
+ 	}
+ 	public void show()
+ 	{
+ 		fill(0,255,0);
+ 		rect(foodX,foodY,10,10);
+ 	}
+ }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Chemotaxis" };
     if (passedArgs != null) {
