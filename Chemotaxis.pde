@@ -22,22 +22,21 @@
  	{
  		colony[j].move();
  		colony[j].show();
+ 		if(colony[j].bacX == jeeves.foodX+5 && colony[j].bacY == jeeves.foodY+5)
+ 		{
+ 			jeeves.foodX = (int)(Math.random()*491);
+ 			jeeves.foodY = (int)(Math.random()*491);
+ 		}
  	}
  }  
- void mousePressed()
- {
- 	jeeves.foodX = mouseX+5;
- 	jeeves.foodY = mouseY+5;
- }
  class Bacteria    
  {
  	int bacX, bacY, bacCol;
  	Bacteria()
  	{
- 		bacX = (int)(Math.random()*501);
- 		bacY = (int)(Math.random()*501);
+ 		bacX = (int)(Math.random()*491);
+ 		bacY = (int)(Math.random()*491);
  		bacCol = (int)(Math.random()*256);
-
  	}
  	void move()
  	{
@@ -47,7 +46,7 @@
  		{
  			bacX = bacX + (int)(Math.random()*3);
  		}
- 		if(jeeves.foodX+5 < bacX)
+ 		else
  		{
  			bacX = bacX + (int)(Math.random()*3)-2;
  		}
@@ -55,7 +54,7 @@
  		{
  			bacY = bacY + (int)(Math.random()*3);
  		}
- 		if(jeeves.foodY+5 < bacY)
+ 		else
  		{
  			bacY = bacY + (int)(Math.random()*3)-2;
  		}
@@ -73,8 +72,8 @@
  	int foodX, foodY;
  	Food()
  	{
- 		foodX = (int)(Math.random()*501);
- 		foodY = (int)(Math.random()*501);
+ 		foodX = (int)(Math.random()*491);
+ 		foodY = (int)(Math.random()*491);
  	}
  	void show()
  	{
