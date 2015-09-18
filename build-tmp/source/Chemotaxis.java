@@ -21,7 +21,7 @@ public class Chemotaxis extends PApplet {
  {
  	size(500,500);
  	//initialize bacteria variables here
- 	colony = new Bacteria[20];
+ 	colony = new Bacteria[150];
  	for(int i = 0; i<colony.length; i++)
  	{
  		colony[i] = new Bacteria();
@@ -43,6 +43,17 @@ public class Chemotaxis extends PApplet {
  			jeeves.foodX = (int)(Math.random()*491);
  			jeeves.foodY = (int)(Math.random()*491);
  		}
+ 		if(get(colony[j].bacX,colony[j].bacY) != color(127))
+ 		{
+ 			if(get(colony[j].bacX,colony[j].bacY) == color(0,255,0))
+ 			{
+ 			}
+ 			else
+ 			{
+ 				colony[j].bacX = (int)(Math.random()*491);
+ 				colony[j].bacY = (int)(Math.random()*491);
+ 			}
+ 		}
  	}
  }  
  class Bacteria    
@@ -52,7 +63,7 @@ public class Chemotaxis extends PApplet {
  	{
  		bacX = (int)(Math.random()*491);
  		bacY = (int)(Math.random()*491);
- 		bacCol = (int)(Math.random()*256);
+ 		bacCol = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
  	}
  	public void move()
  	{
@@ -93,6 +104,7 @@ public class Chemotaxis extends PApplet {
  	}
  	public void show()
  	{
+ 		stroke(0,255,0);
  		fill(0,255,0);
  		rect(foodX,foodY,10,10);
  	}
