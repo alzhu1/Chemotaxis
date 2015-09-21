@@ -5,7 +5,7 @@
  {
  	size(500,500);
  	//initialize bacteria variables here
- 	colony = new Bacteria[150];
+ 	colony = new Bacteria[50];
  	for(int i = 0; i<colony.length; i++)
  	{
  		colony[i] = new Bacteria();
